@@ -22,7 +22,8 @@ public class SelenideRepositorySearch {
         //Ввести почту для входа
         $("#login_field").setValue("awerinzh@yandex.ru");
         //Ввести пароль для входа
-        $("#password").setValue("averin228337").pressEnter();
+        $("#password").setValue("averin228337");
+        $("[value='Sign in']").click();
         //Нажать на поле ввода
         $(".placeholder").click();
         //Ввести в поиск "selenide" и нажать Enter
