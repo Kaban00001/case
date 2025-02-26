@@ -28,7 +28,6 @@ public class MortgageApplication {
         $("[data-test-id='input__firstname']").setValue("Мария");
         $("[data-test-id='input__contacts-email-field']").setValue("awerinzh@yandex.ru");
         $("[data-test-id='button__signup']").click();
-        //$(byText("Введите текст с картинки"));
         $(byTagAndText("label", "Введите текст с картинки"));
 
 
