@@ -1,21 +1,25 @@
 package my_progect;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RepositoryPage;
 import pages.components.WelcomePage;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 
 public class SelenideRepositorySearchPageObjects {
     RepositoryPage repositoryPage = new RepositoryPage();
 
+    @BeforeAll
+    static void setupAll() {
+        Configuration.holdBrowserOpen = true;
+    }
+
     @Test
     void shouldFindSelenideRepositoryAtTheTop() {
 
-        Configuration.holdBrowserOpen = true;
 
         WelcomePage.openPage()
                 .clickButtonSignIn()

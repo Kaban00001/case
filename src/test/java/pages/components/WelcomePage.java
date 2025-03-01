@@ -1,10 +1,16 @@
 package pages.components;
 
 
+import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
     public class WelcomePage {
+
+        private final SelenideElement
+                setButtonInput = $(".HeaderMenu-link-wrap");
+
+
 
         public static WelcomePage openPage() {
             open("https://github.com/");
@@ -13,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
         }
 
         public LoginPage clickButtonSignIn() {
-            $(".HeaderMenu-link-wrap").click();
+            setButtonInput.click();
 
             return new LoginPage();
         }

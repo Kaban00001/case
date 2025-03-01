@@ -1,15 +1,15 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
-
-import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.$;
 
     public class LoginPage {
 
-        private final SelenideElement setLoginInInput = $("#login_field"),
-                setPasswordInput = $("#password");
-        public MainPage clickSignInButton;
+        private final SelenideElement
+                setLoginInInput = $("#login_field"),
+                setPasswordInput = $("#password"),
+                setValueInput = $("[value='Sign in']");
+
 
         public LoginPage setLogin(String value) {
             setLoginInInput.setValue(value);
@@ -24,7 +24,7 @@ import static com.codeborne.selenide.Selenide.$;
         }
 
         public MainPage clickSignInButton() {
-            $("[value='Sign in']").click();
+            setValueInput.click();
 
             return new MainPage();
         }

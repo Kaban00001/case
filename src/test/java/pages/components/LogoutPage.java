@@ -1,11 +1,14 @@
 package pages.components;
 
+import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LogoutPage {
 
+    private final SelenideElement setAgainInput = $(".inline-form");
+
     public LogoutPage clickSignOutAgain () {
-    $(".inline-form").click();
+        setAgainInput.click();
 
         return this;
 }
