@@ -4,8 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RepositoryPage;
-import pages.components.MainPage;
-import pages.components.WelcomePage;
+import pages.MainPage;
+import pages.WelcomePage;
 
 
 

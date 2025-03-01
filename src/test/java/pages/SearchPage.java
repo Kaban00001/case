@@ -1,7 +1,7 @@
-package pages.components;
+package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import pages.RepositoryPage;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class SearchPage {
