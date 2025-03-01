@@ -40,10 +40,6 @@ public class SelenideRepositorySearchPageObjects extends TestBase {
 
 
 
-
-
-
-
 }
 
 
