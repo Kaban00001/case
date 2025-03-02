@@ -38,4 +38,4 @@ public class Lesson_7 {
 }
 
 
-//
+        step("Нажать на жопу", () -> open("JOPA"));

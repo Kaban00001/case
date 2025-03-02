@@ -1,15 +1,13 @@
-package my_progect;
+package my_progect.test;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pages.RepositoryPage;
-import pages.MainPage;
-import pages.WelcomePage;
+import my_progect.pages.RepositoryPage;
+import my_progect.pages.MainPage;
+import my_progect.pages.WelcomePage;
 
-
-
-public class SelenideRepositorySearchPageObjects extends TestBase {
+public class SelenideRepositorySearchPageObjects extends TestBaseGitHub {
     RepositoryPage repositoryPage = new RepositoryPage();
     MainPage mainPage;
 
@@ -23,10 +21,8 @@ public class SelenideRepositorySearchPageObjects extends TestBase {
                 .clickSignInButton();
     }
 
-
     @Test
     void shouldFindSelenideRepositoryAtTheTop() {
-
         mainPage
                 .clickTheInputField()
                 .enterInTheField("selenide")
@@ -34,12 +30,7 @@ public class SelenideRepositorySearchPageObjects extends TestBase {
                 .setShouldHave("selenide / selenide")
                 .hoverOverFirstContributor()
                 .verifyContributorName("Andrei Solntsev");
-
-
     }
-
-
-
 }
 
 

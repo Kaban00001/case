@@ -1,4 +1,4 @@
-package my_progect;
+package my_progect.test;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
