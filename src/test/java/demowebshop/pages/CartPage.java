@@ -15,27 +15,28 @@ public class CartPage {
             updateCartButton = $("[value='Update shopping cart']");
 
     @Step("Обновить страницу")
-    public static CartPage refreshCart() {
+    public CartPage refreshCart() {
         refresh();
 
         return new CartPage();
     }
 
     @Step("Проверить колличество в корзине {0}")
-    public CartPage verifyCartQuantity(String expectedQuantity) {
-        cartQuantity.shouldHave(text(expectedQuantity));
+    public CartPage verifyCartQuantity(int expectedQuantity) {
+        String formattedQuantity = "(" + expectedQuantity + ")";
+        cartQuantity.shouldHave(text(formattedQuantity));
 
         return this;
     }
 
     @Step("Выбрать товар в корзине")
-    public CartPage removeItemFromCart() {
+    public CartPage selectItemInCart() {
         removeFromCartCheckbox.click();
 
         return this;
     }
 
-    @Step("Удалить товар в корзине")
+    @Step("Нажать на кнопку обновления корзины")
     public CartPage updateCart() {
         updateCartButton.click();
 

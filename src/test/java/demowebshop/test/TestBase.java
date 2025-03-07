@@ -1,46 +1,44 @@
 package demowebshop.test;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
-import demowebshop.pages.LogoutPage;
-import demowebshop.pages.RegistrationPage;
-import demowebshop.pages.SuccessPage;
-import demowebshop.pages.WelcomePage;
+import demowebshop.pages.MainPage;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestBase {
+    private static final String MAIN_PAGE_URL = "https://demowebshop.tricentis.com/";
+    private final Faker faker = new Faker();
+     private final MainPage mainPage = new MainPage();
 
-    protected final Faker faker = new Faker();
+    @BeforeAll
+     static void setUP() {
+        Configuration.holdBrowserOpen = true;
+    }
 
     @BeforeEach
     void registerNewUser() {
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String email = faker.internet().emailAddress();
+
         String password = faker.internet().password();
 
-        Configuration.holdBrowserOpen = true;
-
-        WelcomePage
-                .openPage()
-                .clickRegisterButton();
-        RegistrationPage
+        Selenide.open(MAIN_PAGE_URL, MainPage.class)
+                .clickRegisterButton()
                 .clickMaleGender()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
+                .setFirstName(faker.name().firstName())
+                .setLastName(faker.name().lastName())
+                .setEmail(faker.internet().emailAddress())
                 .setPassword(password)
                 .setConfirmPassword(password)
-                .clickRegisters();
-        SuccessPage
-                .verifyRegistrationSuccessMessage(" Your registration completed ")
+                .clickRegisterButton()
+                .verifyRegistrationSuccessMessage()
                 .clickContinueButton();
     }
 
     @AfterEach
     void logoutUser() {
-        LogoutPage
+        mainPage
                 .clickLogoutButton();
     }
 }
