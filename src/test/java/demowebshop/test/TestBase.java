@@ -3,6 +3,7 @@ package demowebshop.test;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
+import demowebshop.helpers.Attach;
 import demowebshop.pages.MainPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,7 +15,6 @@ public class TestBase {
     private final Faker faker = new Faker();
     private final MainPage mainPage = new MainPage();
 
-
     @BeforeAll
     static void setUP() {
         //Configuration.holdBrowserOpen = true;
@@ -23,9 +23,9 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
-        Configuration.browserSize = "1920x1080";  Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browserSize = "1920x1080";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
-
 
     @BeforeEach
     void registerNewUser() {
@@ -46,8 +46,19 @@ public class TestBase {
     }
 
     @AfterEach
-    void logoutUser() {
-        mainPage
-                .clickLogoutButton();
+    void tearDown() {
+        logoutUser();
+        addAttachments();
+    }
+
+    private void logoutUser() {
+        mainPage.clickLogoutButton();
+    }
+
+    private void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 }
