@@ -2,6 +2,7 @@ package my_progect.test;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import my_progect.pages.RepositoryPage;
 import my_progect.pages.MainPage;
@@ -22,6 +23,7 @@ public class SelenideRepositorySearchPageObjects extends TestBaseGitHub {
     }
 
     @Test
+    @Tag("master")
     void shouldFindSelenideRepositoryAtTheTop() {
         mainPage
                 .clickTheInputField()

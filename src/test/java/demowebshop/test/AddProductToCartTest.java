@@ -1,6 +1,7 @@
 package demowebshop.test;
 
 import demowebshop.pages.MainPage;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class AddProductToCartTest extends TestBase {
@@ -9,6 +10,7 @@ public class AddProductToCartTest extends TestBase {
     private final MainPage mainPage = new MainPage();
 
     @Test
+    @Tag("master")
     void addProductToCartTest() {
         mainPage
                 .clickOnProduct("Apparel & Shoes")
