@@ -7,23 +7,32 @@ import demowebshop.pages.MainPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
     private static final String MAIN_PAGE_URL = "https://demowebshop.tricentis.com/";
     private final Faker faker = new Faker();
-     private final MainPage mainPage = new MainPage();
+    private final MainPage mainPage = new MainPage();
+
 
     @BeforeAll
-     static void setUP() {
-        Configuration.holdBrowserOpen = true;
+    static void setUP() {
+        //Configuration.holdBrowserOpen = true;
+        Configuration.pageLoadTimeout = 100000;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
+        Configuration.browserSize = "1920x1080";  Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
+
 
     @BeforeEach
     void registerNewUser() {
 
         String password = faker.internet().password();
 
-        Selenide.open(MAIN_PAGE_URL, MainPage.class)
+        Selenide.open(TestBase.MAIN_PAGE_URL, MainPage.class)
                 .clickRegisterButton()
                 .clickMaleGender()
                 .setFirstName(faker.name().firstName())
