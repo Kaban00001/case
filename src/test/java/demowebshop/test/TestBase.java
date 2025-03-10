@@ -49,6 +49,7 @@ public class TestBase {
     void tearDown() {
         logoutUser();
         addAttachments();
+        Selenide.closeWebDriver();
     }
 
     private void logoutUser() {

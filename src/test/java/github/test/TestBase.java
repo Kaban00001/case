@@ -28,8 +28,12 @@ public class TestBase {
     }
 
     @AfterEach
+    void tearDown() {
+        addAttachments();
+        Selenide.closeWebDriver();
+    }
 
-    void addAttachments() {
+   private void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
