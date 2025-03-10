@@ -10,7 +10,7 @@ public class CheckingElementsOnPagesTest extends TestBase {
     private static final String PRODUCT_CALALOGE_URL = "https://demowebshop.tricentis.com/apparel-shoes";
 
     @Test
-    @Tag("master")
+    @Tag("demowebshop")
     @DisplayName("Проверка отображения 4, 8 и 12 продуктов на странице")
     void verifyProductsPerPage() {
         Selenide.open(PRODUCT_CALALOGE_URL, ProductCatalogPage.class)

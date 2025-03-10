@@ -16,7 +16,7 @@ public class RegistrationNegativeTest2 extends TestBase {
 
     @ParameterizedTest
     @DisplayName("Проверка появления ошибки при вводе невалидных данных при регистрации")
-    @Tag("master")
+    @Tag("github")
     @MethodSource("dataProvider")
     void testInvalidRegistration(String email, String password, String username, String errorMessage) {
 

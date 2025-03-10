@@ -11,7 +11,7 @@ public class AddProductToCartTest extends TestBase {
     private final MainPage mainPage = new MainPage();
 
     @Test
-    @Tag("master")
+    @Tag("demowebshop")
     @DisplayName("Добавление продукта в корзину")
     void addProductToCartTest() {
         mainPage

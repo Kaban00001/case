@@ -24,7 +24,7 @@ public class SelenideRepositorySearchPageObjects extends TestBaseGitHub {
     }
 
     @Test
-    @Tag("master")
+    @Tag("github")
     @DisplayName("Поиск репозитория Selenide в GitHub")
     void shouldFindSelenideRepositoryAtTheTop() {
         mainPage

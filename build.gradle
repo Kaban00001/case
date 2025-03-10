@@ -29,8 +29,14 @@ test {
     forkEvery = 1
 }
 
-task master_test(type: Test) {
+task demowebshop_test(type: Test) {
     useJUnitPlatform {
-        includeTags("master")
+        includeTags("demowebshop")
+    }
+}
+
+task github_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("github")
     }
 }
