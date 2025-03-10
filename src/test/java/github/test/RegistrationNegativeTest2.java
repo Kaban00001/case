@@ -47,7 +47,7 @@ public class RegistrationNegativeTest2 {
                         faker.name().username(),
                         faker.internet().password(),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Невалидный Email\nEmail is invalid or already taken"
+                        "Невалидный Email<br>Email is invalid or already taken"
 
 
                 ),
@@ -55,14 +55,14 @@ public class RegistrationNegativeTest2 {
                         faker.internet().emailAddress(),
                         faker.lorem().characters(3),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Невалидный Password\nPassword is too short"
+                        "Невалидный Password<br>Password is too short"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.internet().password(),
                         faker.name().username() + "!",
-                        "Невалидный UserName\nUsername may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
+                        "Невалидный UserName<br>Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
 
                 )
         );
