@@ -30,6 +30,7 @@ public class RegistrationNegativeTest2 {
     void testInvalidRegistration(String email, String password, String username, String errorMessage) {
 
         Allure.getLifecycle().updateTestCase(testResult -> testResult.setName(errorMessage));
+        Allure.parameter("Текст ошибки", errorMessage.replace("\n", "<br>"));
 
         Selenide.open(REGISTRATION_PAGE_URL, RegistrationPage.class)
                 .setEmail(email)
@@ -47,7 +48,7 @@ public class RegistrationNegativeTest2 {
                         faker.name().username(),
                         faker.internet().password(),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Невалидный Email<br>Email is invalid or already taken"
+                        "Невалидный Email\nEmail is invalid or already taken"
 
 
                 ),
@@ -55,14 +56,14 @@ public class RegistrationNegativeTest2 {
                         faker.internet().emailAddress(),
                         faker.lorem().characters(3),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Невалидный Password<br>Password is too short"
+                        "Невалидный Password\nPassword is too short"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.internet().password(),
                         faker.name().username() + "!",
-                        "Невалидный UserName<br>Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
+                        "Невалидный UserName\nUsername may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
 
                 )
         );
