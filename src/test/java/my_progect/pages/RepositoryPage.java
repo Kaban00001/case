@@ -18,7 +18,7 @@ public class RepositoryPage {
             setIconInput = $(".AppHeader-user"),
             setSignInput = $(byTagAndText("span", "Sign out"));
 
-    @Step("Проверить название репозитория selenide / selenide {0}")
+    @Step("Проверить название репозитория selenide / selenide")
     public RepositoryPage setShouldHave(String value) {
         setShouldInput.shouldHave(text(value));
 
@@ -35,7 +35,7 @@ public class RepositoryPage {
 
     }
 
-    @Step("Проверить имя Andrei Solntsev {0}")
+    @Step("Проверить имя Andrei Solntsev")
     public RepositoryPage verifyContributorName(String value) {
         setNameInput.shouldHave(text(value));
 

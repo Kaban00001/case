@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$;
         return this;
         }
 
-        @Step("Ввести в поиск selenide и нажать Enter {0}")
+        @Step("Ввести в поиск selenide и нажать Enter")
         public SearchPage enterInTheField (String value){
             setEnterInput.setValue(value).pressEnter();
 

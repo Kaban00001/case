@@ -12,7 +12,7 @@ public class LoginPage {
             setPasswordInput = $("#password"),
             setValueInput = $("[value='Sign in']");
 
-    @Step("Ввести Login{0}")
+    @Step("Ввести Login {0}")
     public LoginPage setLogin(String value) {
         setLoginInInput.setValue(value);
 
