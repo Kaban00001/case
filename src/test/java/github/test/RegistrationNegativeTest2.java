@@ -31,6 +31,7 @@ public class RegistrationNegativeTest2 {
 
         Allure.getLifecycle().updateTestCase(testResult -> testResult.setName(errorMessage));
         Allure.parameter("Текст ошибки", errorMessage.replace("\n", "<br>"));
+        Allure.addAttachment("Текст ошибки", "text/plain", errorMessage);
 
         Selenide.open(REGISTRATION_PAGE_URL, RegistrationPage.class)
                 .setEmail(email)
