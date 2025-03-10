@@ -22,6 +22,8 @@ public class TestBase {
         Configuration.pageLoadTimeout = 100000;
         Configuration.browserSize = "1920x1080";
 
+        System.out.println("Test environment: " + testEnv);
+
         if ("selenoid".equals(testEnv)) {
             Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
             DesiredCapabilities capabilities = new DesiredCapabilities();
