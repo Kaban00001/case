@@ -1,4 +1,25 @@
 package github.test;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import github.pages.RegistrationPage;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
 public class TestBase {
+
+    private static final String REGISTRATION_PAGE_URL = "https://github.com/signup";
+
+    @BeforeAll
+    static void setUP() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true));
+    }
+
+    @BeforeEach
+    void open() {
+        Selenide.open(REGISTRATION_PAGE_URL, RegistrationPage.class);
+    }
 }
