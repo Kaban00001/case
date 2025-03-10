@@ -25,12 +25,10 @@ tasks.withType(JavaCompile) {
 
 test {
     useJUnitPlatform()
-    maxParallelForks = 1
-    forkEvery = 1
 }
 
 task master_test(type: Test) {
-    useJUnitPlatform{
+    useJUnitPlatform {
         includeTags("master")
     }
 }

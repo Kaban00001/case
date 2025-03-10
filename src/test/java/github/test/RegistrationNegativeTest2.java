@@ -3,6 +3,7 @@ package github.test;
 import com.github.javafaker.Faker;
 import github.pages.RegistrationPage;
 import io.qameta.allure.Allure;
+import my_progect.test.TestBaseGitHub;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
