@@ -2,8 +2,7 @@ package github.test;
 
 import com.github.javafaker.Faker;
 import github.pages.RegistrationPage;
-import io.qameta.allure.Allure;
-import my_progect.test.TestBaseGitHub;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,13 +14,11 @@ public class RegistrationNegativeTest2 extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    @ParameterizedTest(name = "{4}")
+    @ParameterizedTest
+    @DisplayName("Проверка появления ошибки при вводе короткого пароля")
     @Tag("master")
     @MethodSource("dataProvider")
-    void testInvalidRegistration(String email, String password, String username, String errorMessage, String text) {
-
-        Allure.getLifecycle().updateTestCase(testResult -> testResult.setName(text));
-
+    void testInvalidRegistration(String email, String password, String username, String errorMessage) {
 
         registrationPage
                 .setEmail(email)
@@ -39,24 +36,22 @@ public class RegistrationNegativeTest2 extends TestBase {
                         faker.name().username(),
                         faker.internet().password(),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Email is invalid or already taken",
-                        "Регистрация пользователя с невалидным Email"
+                        "Email is invalid or already taken"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.lorem().characters(3),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Password is too short",
-                        "Регистрация пользователя с невалидным Password"
+                        "Password is too short"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.internet().password(),
                         faker.name().username() + "!",
-                        "Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  ",
-                        "Регистрация пользователя с невалидным UserName"
+                        "Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
+
                 )
         );
     }
