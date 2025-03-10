@@ -12,7 +12,7 @@ public class AddProductToCartTest extends TestBase {
 
     @Test
     @Tag("master")
-    @DisplayName("Добавить продукт в корзину")
+    @DisplayName("Добавление продукта в корзину")
     void addProductToCartTest() {
         mainPage
                 .clickOnProduct("Apparel & Shoes")
