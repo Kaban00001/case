@@ -15,7 +15,7 @@ public class RegistrationNegativeTest2 extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @ParameterizedTest
-    @DisplayName("Проверка появления ошибки при вводе короткого пароля")
+    @DisplayName("Проверка появления ошибки при вводе невалидных данных при регистрации")
     @Tag("master")
     @MethodSource("dataProvider")
     void testInvalidRegistration(String email, String password, String username, String errorMessage) {
