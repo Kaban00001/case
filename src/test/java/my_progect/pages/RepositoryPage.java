@@ -1,6 +1,7 @@
 package my_progect.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
@@ -13,48 +14,48 @@ public class RepositoryPage {
 
     private final SelenideElement
             setShouldInput = $(".position-relative"),
-            //setOverInput = $(".BorderGrid").$(byText("Contributors")).ancestor(".BorderGrid-row").$$("ul li")
-            //Как такую шляпу можно вынести?
             setNameInput = $(".Truncate-text--expandable"),
             setIconInput = $(".AppHeader-user"),
             setSignInput = $(byTagAndText("span", "Sign out"));
 
+    @Step("Проверить название репозитория selenide / selenide {0}")
+    public RepositoryPage setShouldHave(String value) {
+        setShouldInput.shouldHave(text(value));
 
-        public RepositoryPage setShouldHave (String value){
-            setShouldInput.shouldHave(text(value));
+        return this;
+    }
 
-            return this;
-        }
+    @Step("Навести курсор на первого учатсника")
+    public RepositoryPage hoverOverFirstContributor() {
+        $(".BorderGrid")
+                .$(byText("Contributors")).ancestor(".BorderGrid-row")
+                .$$("ul li").first().hover();
 
-        public RepositoryPage hoverOverFirstContributor () {
-            $(".BorderGrid")
-                    .$(byText("Contributors")).ancestor(".BorderGrid-row")
-                    .$$("ul li").first().hover();
-
-            return this;
-
-        }
-
-        public RepositoryPage verifyContributorName (String value){
-            setNameInput.shouldHave(text(value));
-
-            return this;
-
-        }
-
-        public RepositoryPage clickOnTheIcon () {
-            setIconInput.click();
-
-            return this;
-        }
-
-        public LogoutPage clickSignOut () {
-            setSignInput.click();
-
-            return new LogoutPage();
-        }
-
-
-
+        return this;
 
     }
+
+    @Step("Проверить имя Andrei Solntsev {0}")
+    public RepositoryPage verifyContributorName(String value) {
+        setNameInput.shouldHave(text(value));
+
+        return this;
+
+    }
+
+    @Step("Нажать на свою иконку")
+    public RepositoryPage clickOnTheIcon() {
+        setIconInput.click();
+
+        return this;
+    }
+
+    @Step("Нажать на Sign out")
+    public LogoutPage clickSignOut() {
+        setSignInput.click();
+
+        return new LogoutPage();
+    }
+
+
+}
