@@ -7,6 +7,7 @@ import github.pages.RegistrationPage;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -26,6 +27,7 @@ public class RegistrationNegativeTest2 {
 
     @ParameterizedTest
     @Tag("master")
+    @DisplayName("Негативный тест, регистрации пользователя")
     @MethodSource("dataProvider")
     void testInvalidRegistration(String email, String password, String username, String errorMessage) {
         Selenide.open(REGISTRATION_PAGE_URL, RegistrationPage.class)

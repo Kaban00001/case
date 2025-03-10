@@ -1,6 +1,7 @@
 package demowebshop.test;
 
 import demowebshop.pages.MainPage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,7 @@ public class AddProductToCartTest extends TestBase {
 
     @Test
     @Tag("master")
+    @DisplayName("Добавить продукт в корзину")
     void addProductToCartTest() {
         mainPage
                 .clickOnProduct("Apparel & Shoes")
