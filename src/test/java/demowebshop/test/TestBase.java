@@ -16,15 +16,21 @@ public class TestBase {
     private final MainPage mainPage = new MainPage();
 
     @BeforeAll
-    static void setUP() {
-        //Configuration.holdBrowserOpen = true;
+    static void setUp() {
+        String testEnv = System.getProperty("test.env", "local"); // по умолчанию local
+
         Configuration.pageLoadTimeout = 100000;
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
         Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        if ("selenoid".equals(testEnv)) {
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
+        } else {
+            Configuration.browser = "chrome";
+        }
     }
 
     @BeforeEach
