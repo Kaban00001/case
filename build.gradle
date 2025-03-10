@@ -30,12 +30,14 @@ test {
 }
 
 task demowebshop_test(type: Test) {
+    systemProperties System.getProperties()
     useJUnitPlatform {
         includeTags("demowebshop")
     }
 }
 
 task github_test(type: Test) {
+    systemProperties System.getProperties()
     useJUnitPlatform {
         includeTags("github")
     }
