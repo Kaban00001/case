@@ -9,7 +9,7 @@ repositories {
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:6.11.0",
+            "com.codeborne:selenide:7.6.0",
             "org.junit.jupiter:junit-jupiter-api:5.9.3",
             "org.junit.jupiter:junit-jupiter-params:5.10.0",
             "io.qameta.allure:allure-junit5:2.12.0",
