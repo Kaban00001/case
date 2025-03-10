@@ -15,12 +15,13 @@ public class RegistrationNegativeTest2 extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    @ParameterizedTest(name = "{3}")
+    @ParameterizedTest(name = "{4}")
     @Tag("master")
     @MethodSource("dataProvider")
-    void testInvalidRegistration(String email, String password, String username, String errorMessage) {
+    void testInvalidRegistration(String email, String password, String username, String errorMessage, String text) {
 
-        Allure.getLifecycle().updateTestCase(testResult -> testResult.setName(errorMessage));
+        Allure.getLifecycle().updateTestCase(testResult -> testResult.setName(text));
+
 
         registrationPage
                 .setEmail(email)
@@ -38,22 +39,24 @@ public class RegistrationNegativeTest2 extends TestBase {
                         faker.name().username(),
                         faker.internet().password(),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Email is invalid or already taken"
+                        "Email is invalid or already taken",
+                        "Регистрация пользователя с невалидным Email"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.lorem().characters(3),
                         faker.name().firstName() + faker.name().lastName(),
-                        "Password is too short"
+                        "Password is too short",
+                        "Регистрация пользователя с невалидным Password"
 
                 ),
                 Arguments.of(
                         faker.internet().emailAddress(),
                         faker.internet().password(),
                         faker.name().username() + "!",
-                        "Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  "
-
+                        "Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.  ",
+                        "Регистрация пользователя с невалидным UserName"
                 )
         );
     }
