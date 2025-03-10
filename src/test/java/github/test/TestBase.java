@@ -20,7 +20,25 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true));
-    }
+
+            String testEnv = System.getProperty("test.env", "local"); // по умолчанию local
+
+            Configuration.pageLoadTimeout = 100000;
+            Configuration.browserSize = "1920x1080";
+
+            System.out.println("Test environment: " + testEnv);
+
+            if ("selenoid".equals(testEnv)) {
+                Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability("enableVNC", true);
+                capabilities.setCapability("enableVideo", true);
+                Configuration.browserCapabilities = capabilities;
+            } else {
+                Configuration.browser = "chrome";
+            }
+        }
+
 
     @BeforeEach
     void open() {
