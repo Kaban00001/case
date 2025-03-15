@@ -39,17 +39,17 @@ task demowebshop_test(type: Test) {
         includeTags("demowebshop")
     }
 }
-
 task github_test(type: Test) {
     systemProperties System.getProperties()
     useJUnitPlatform {
         includeTags("github")
     }
+}
 
-    task todoTests_test(type: Test) {
-        systemProperties System.getProperties()
-        useJUnitPlatform {
-            includeTags("todoTests")
-        }
+task todoTests_test(type: Test) {
+    systemProperties System.getProperties()
+    useJUnitPlatform {
+        includeTags("todoTests")
     }
 }
+
