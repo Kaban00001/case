@@ -17,7 +17,7 @@ public class TODOApiClient {
             .setBaseUri("http://2.59.41.2:7320/")
             .setContentType(JSON)
             .build();
-    public Faker faker = new Faker();
+    private final Faker faker = new Faker();
     String email = faker.internet().emailAddress();
     String password = faker.internet().password();
 
