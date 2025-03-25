@@ -1,5 +1,6 @@
 package api.yustalius.test;
 
+import api.yustalius.helpers.PropertiesHelper;
 import api.yustalius.model.auth.LoginRequest;
 import api.yustalius.model.auth.LoginResponse;
 import api.yustalius.model.auth.RegisterRequest;
@@ -9,11 +10,13 @@ import api.yustalius.model.order.OrderResponse;
 import api.yustalius.model.order.UpdateOrderStatusRequest;
 import api.yustalius.model.product.ProductRequest;
 import api.yustalius.model.product.ProductResponse;
+import api.yustalius.model.user.UserRequest;
+import api.yustalius.model.user.UserResponse;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.List;
 
@@ -21,11 +24,14 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class ApiClient {
+    PropertiesHelper props = new PropertiesHelper("src/test/resources/config.properties");
     RequestSpecification spec = new RequestSpecBuilder()
             .setBaseUri("http://localhost:8080/")
             .setContentType(JSON)
             .build();
     private final Faker faker = new Faker();
+    private String adminUsername = props.getProperty("admin.username");
+    private String adminPassword = props.getProperty("admin.password");
     private String username = faker.internet().emailAddress();
     private String password = faker.internet().password();
     private String firstname = faker.name().firstName();
@@ -47,9 +53,11 @@ public class ApiClient {
 
         return given(spec)
                 .body(request)
+                .log().all()
                 .when()
                 .post("/auth/register")
                 .then()
+                .log().all()
                 .statusCode(200)
                 .extract().as(RegisterResponse.class);
     }
@@ -62,9 +70,11 @@ public class ApiClient {
 
         return given(spec)
                 .body(request)
+                .log().all()
                 .when()
                 .post("/auth/login")
                 .then()
+                .log().all()
                 .statusCode(200)
                 .extract().as(LoginResponse.class);
     }
@@ -106,7 +116,7 @@ public class ApiClient {
     @Step("Получение продукта по Id")
     public Response getProduct(int productId) {
 
-       return given(spec)
+        return given(spec)
                 .header("Authorization", "Bearer " + login(username, password).getToken())
                 .when()
                 .get("/product/" + productId)
@@ -205,4 +215,48 @@ public class ApiClient {
                 .statusCode(200)
                 .extract().body().jsonPath().getList(".", OrderResponse.class);
     }
+
+    @Step("Получение пользователя по Id")
+    public Response getUser(int userId) {
+
+        return given(spec)
+                .log().all()
+                .header("Authorization", "Bearer " + login(adminUsername, adminPassword).getToken())
+                .when()
+                .get("/user/" + userId)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+    @Step("Обновление пользователя по Id")
+    public UserResponse updateUser(int userId, String firstName, String lastname, int age) {
+        UserRequest request = new UserRequest();
+        request.setFirstName(firstName);
+        request.setLastName(lastname);
+        request.setAge(age);
+
+        return given(spec)
+                .header("Authorization", "Bearer " + login(username, password).getToken())
+                .body(request)
+                .when()
+                .patch("/user/" + userId)
+                .then()
+                .statusCode(200)
+                .extract().as(UserResponse.class);
+    }
+
+    @Step("Удаление пользователя по Id")
+    public void deleteUser(int userId) {
+        given(spec)
+                .log().all()
+                .header("Authorization", "Bearer " + login(username, password).getToken())
+                .when()
+                .delete("/user/" + userId)
+                .then()
+                .log().all()
+                .statusCode(204);
+
+    }
+
 }
