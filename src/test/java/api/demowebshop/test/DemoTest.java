@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LoginTest {
+public class DemoTest {
 
     private final ApiClient client = new ApiClient();
 
